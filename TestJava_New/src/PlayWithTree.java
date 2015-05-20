@@ -1,272 +1,319 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * @author s0176953
  * 
  */
 public class PlayWithTree {
 
-    private static int globalCount = -1;
-    private static boolean firstTime = true;
+	private static int globalCount = -1;
+	private static boolean firstTime = true;
+	private Queue queue = null;
 
-    public static TreeNode createBinaryTree() {
+	public static TreeNode createBinaryTree() {
 
-        TreeNode eleventhNode = new TreeNode(0, 11);
-        TreeNode tenthNode = new TreeNode(0, 10);
-        TreeNode ninthNode = new TreeNode(0, 9);
-        TreeNode eighthNode = new TreeNode(0, 8);
-        TreeNode sevenNode = new TreeNode(0, 7);
-        TreeNode sixthNode = new TreeNode(0, 6);
-        TreeNode fifthNode = new TreeNode(0, 5);
-        TreeNode fourthNode = new TreeNode(0, 4);
-        TreeNode thirdNode = new TreeNode(0, 3);
-        TreeNode secondNode = new TreeNode(0, 2);
-        TreeNode firstNode = new TreeNode(1, 1);
+		TreeNode eleventhNode = new TreeNode(0, 11);
+		TreeNode tenthNode = new TreeNode(0, 10);
+		TreeNode ninthNode = new TreeNode(0, 9);
+		TreeNode eighthNode = new TreeNode(0, 8);
+		TreeNode sevenNode = new TreeNode(0, 7);
+		TreeNode sixthNode = new TreeNode(0, 6);
+		TreeNode fifthNode = new TreeNode(0, 5);
+		TreeNode fourthNode = new TreeNode(0, 4);
+		TreeNode thirdNode = new TreeNode(0, 3);
+		TreeNode secondNode = new TreeNode(0, 2);
+		TreeNode firstNode = new TreeNode(1, 1);
 
-        eighthNode.left = tenthNode;
-        eighthNode.right = eleventhNode;
+		eighthNode.left = tenthNode;
+		eighthNode.right = eleventhNode;
 
-        sevenNode.left = tenthNode;
-        sevenNode.right = eleventhNode;
+		sevenNode.left = tenthNode;
+		sevenNode.right = eleventhNode;
 
-        fifthNode.left = eighthNode;
-        fifthNode.right = ninthNode;
+		fifthNode.left = eighthNode;
+		fifthNode.right = ninthNode;
 
-        fourthNode.left = sixthNode;
-        fourthNode.right = sevenNode;
+		fourthNode.left = sixthNode;
+		fourthNode.right = sevenNode;
 
-        thirdNode.left = fourthNode;
-        thirdNode.right = fifthNode;
+		thirdNode.left = fourthNode;
+		thirdNode.right = fifthNode;
 
-        // secondNode.left = new TreeNode(100);
-        // secondNode.right = new TreeNode(50);
+		// secondNode.left = new TreeNode(100);
+		// secondNode.right = new TreeNode(50);
 
-        firstNode.left = secondNode;
-        firstNode.right = thirdNode;
+		firstNode.left = secondNode;
+		firstNode.right = thirdNode;
 
-        return firstNode;
+		return firstNode;
 
-    }
-    
+	}
 
 	/*
 	 * 
-	 *     				20
-	 *     				/\
-	 *     			  8   22
-	 *				/  \   
-	 *     		   4   12
-	 *     				/\
-	 *     			  10  14
-	 *     
-	 *     
-	 */  
-    
-    public static TreeNode createTreeForInOrderSuccessor(){
+	 * 20 
+	 * /\ 
+	 *8 22
+	 / \
+    4 12
+    /\
+  10 14
+	 */
 
-    	TreeNode nodeFirst = new TreeNode(20, 1);
-    	TreeNode nodeSecond = new TreeNode(8, 2, nodeFirst);
+	public static TreeNode createTreeForInOrderSuccessor() {
 
-    	TreeNode nodeFifth = new TreeNode(12, 5, nodeSecond);
-    	TreeNode nodeFourth = new TreeNode(4, 4, nodeSecond);
-    	
-    	TreeNode nodeSixth = new TreeNode(10, 6, nodeFifth);
-    	TreeNode nodeSeventh = new TreeNode(14, 7, nodeFifth);
+		TreeNode nodeFirst = new TreeNode(20, 1);
+		TreeNode nodeSecond = new TreeNode(8, 2, nodeFirst);
 
-    	TreeNode nodeThird = new TreeNode(22, 3, nodeFirst);
-    	
-    	nodeFifth.left = nodeSixth;
-    	nodeFifth.right = nodeSeventh;
-    	
-    	nodeSecond.left = nodeFourth;
-    	nodeSecond.right = nodeFifth;
-    	
-    	nodeFirst.left = nodeSecond;
-    	nodeFirst.right = nodeThird;
-    	
-    	return nodeFirst;
-    	
-    }
+		TreeNode nodeFifth = new TreeNode(12, 5, nodeSecond);
+		TreeNode nodeFourth = new TreeNode(4, 4, nodeSecond);
 
-    public static void main(String[] args) {
-        // TreeNode tree = createBinaryTree();
-        // tree = returnHighestSizeOfAllZerosInSubTree(tree);
-        // System.out.println("Global Count:"+tree.size+1);
+		TreeNode nodeSixth = new TreeNode(10, 6, nodeFifth);
+		TreeNode nodeSeventh = new TreeNode(14, 7, nodeFifth);
 
-        PlayWithTree playWithTree = new PlayWithTree();
+		TreeNode nodeThird = new TreeNode(22, 3, nodeFirst);
 
-//         int[] array = new int[]{5,8,13,17,20,21,24};
-//         TreeNode node = playWithTree.createBinarySearchTree(array, 0,
-//         array.length-1);
+		nodeFifth.left = nodeSixth;
+		nodeFifth.right = nodeSeventh;
 
-//        TreeNode node = playWithTree.createBinaryTree();
+		nodeSecond.left = nodeFourth;
+		nodeSecond.right = nodeFifth;
 
-        // int height = playWithTree.calculateMaxHeight(node);
-        // int height = playWithTree.calculateMinHeight(node);
-        // System.out.println("Minimum Height of Tree :" + height);
+		nodeFirst.left = nodeSecond;
+		nodeFirst.right = nodeThird;
 
-//        boolean isBalanced = playWithTree.isBalanced(node);
-//        System.out.println("isBalanced: " + isBalanced);
+		return nodeFirst;
 
-//         TreeNode lowestCommonAncestorNode = playWithTree.findLowestCommmonAncestor(node, new TreeNode(40), new TreeNode(21));
-//         System.out.println("lowestCommonAncestorNode Value:"+lowestCommonAncestorNode.data);
-         
-         TreeNode tree = playWithTree.createTreeForInOrderSuccessor();
-//         TreeNode node = new TreeNode(8, 2);
-         tree = playWithTree.findInOrderSuccessor(tree, tree.right);
-         System.out.println("Ancesstor is:"+tree.data);
-         
-         
-    }
+	}
 
-    public static TreeNode returnHighestSizeOfAllZerosInSubTree(TreeNode node) {
+	public void breadthFirstSearch(TreeNode tree) {
 
-        if (node == null) {
-            return null;
-        }
+		int height = calculateMaxHeight(tree);
+		int count = 0;
 
-        if (node.left == null && node.right == null && node.data == 0) {
-            node.size++;
-            node.valid = true;
-            return node;
-        } else if (node.left == null && node.right == null) {
-            return node;
-        }
+		queue = new LinkedList<TreeNode>();
+		
+		if (tree != null) {
+			tree.valid = true;
+			queue.add(tree);
+		}
 
-        TreeNode leftNode = returnHighestSizeOfAllZerosInSubTree(node.left);
-        TreeNode rightNode = returnHighestSizeOfAllZerosInSubTree(node.right);
+		if (tree.left != null) {
+			tree.left.valid = true;
+			queue.add(tree.left);
+		}
+		if (tree.right != null) {
+			tree.right.valid = true;
+			queue.add(tree.right);
+		}
 
-        if (leftNode.valid && rightNode.valid && node.data == 0) {
+		while (!queue.isEmpty()) {
 
-            if (firstTime) {
-                node.valid = true;
-                node.size = 3;
-                firstTime = false;
-            } else {
-                node.valid = true;
-                node.size = Math.max(leftNode.size, rightNode.size);
-            }
-        } else {
-            node.size = Math.max(leftNode.size, rightNode.size);
-        }
+			TreeNode tempTree = (TreeNode) queue.poll();
+			System.out.println("tempTree: "+tempTree.data);
+			if (tempTree.valid == false) {
+				tempTree.valid = true;
+				queue.add(tempTree);
+			}
 
-        return node;
-    }
+			if (tempTree.left != null && tempTree.left.valid == false) {
+				tempTree.left.valid = true;
+				queue.add(tempTree.left);
+			}
 
-    // 0,1, 2, 3, 4, 5, 6
-    // create a minimal height tree from a sorted array 5,8,13,17,20,21,24
-    public TreeNode createBinarySearchTree(int[] array, int leftIndex,
-            int rightIndex) {
+			if (tempTree.right != null && tempTree.right.valid == false) {
+				tempTree.right.valid = true;
+				queue.add(tempTree.right);
+			}
+		}
 
-        if (rightIndex < leftIndex)
-            return null;
+	}
 
-        int currentIndexValue = (leftIndex + rightIndex) / 2;
+	public static void main(String[] args) {
+		// TreeNode tree = createBinaryTree();
+		// tree = returnHighestSizeOfAllZerosInSubTree(tree);
+		// System.out.println("Global Count:"+tree.size+1);
 
-        TreeNode tree = new TreeNode(array[currentIndexValue]);
-        tree.left = createBinarySearchTree(array, leftIndex,
-                currentIndexValue - 1);
-        tree.right = createBinarySearchTree(array, currentIndexValue + 1,
-                rightIndex);
+		PlayWithTree playWithTree = new PlayWithTree();
 
-        return tree;
-    }
+		// int[] array = new int[]{5,8,13,17,20,21,24};
+		// TreeNode node = playWithTree.createBinarySearchTree(array, 0,
+		// array.length-1);
 
-    public int calculateMaxHeight(TreeNode node) {
+		// TreeNode node = playWithTree.createBinaryTree();
 
-        if (node == null)
-            return -1;
+		// int height = playWithTree.calculateMaxHeight(node);
+		// int height = playWithTree.calculateMinHeight(node);
+		// System.out.println("Minimum Height of Tree :" + height);
 
-        int lh = calculateMaxHeight(node.left);
-        int rh = calculateMaxHeight(node.right);
+		// boolean isBalanced = playWithTree.isBalanced(node);
+		// System.out.println("isBalanced: " + isBalanced);
 
-        int height = 1 + Math.max(lh, rh);
-        return height;
-    }
+		// TreeNode lowestCommonAncestorNode =
+		// playWithTree.findLowestCommmonAncestor(node, new TreeNode(40), new
+		// TreeNode(21));
+		// System.out.println("lowestCommonAncestorNode Value:"+lowestCommonAncestorNode.data);
 
-    public int calculateMinHeight(TreeNode node) {
+		TreeNode tree = playWithTree.createTreeForInOrderSuccessor();
+		// TreeNode node = new TreeNode(8, 2);
+		//tree = playWithTree.findInOrderSuccessor(tree, tree.right);
+		//System.out.println("Ancesstor is:" + tree.data);
+		
+		playWithTree.breadthFirstSearch(tree);
 
-        if (node == null)
-            return -1;
+	}
 
-        int lh = calculateMaxHeight(node.left);
-        int rh = calculateMaxHeight(node.right);
+	public static TreeNode returnHighestSizeOfAllZerosInSubTree(TreeNode node) {
 
-        int height = 1 + Math.min(lh, rh);
-        return height;
-    }
+		if (node == null) {
+			return null;
+		}
 
-    public boolean isBalanced(TreeNode node) {
+		if (node.left == null && node.right == null && node.data == 0) {
+			node.size++;
+			node.valid = true;
+			return node;
+		} else if (node.left == null && node.right == null) {
+			return node;
+		}
 
-        int maxH = calculateMaxHeight(node);
-        int minH = calculateMinHeight(node);
+		TreeNode leftNode = returnHighestSizeOfAllZerosInSubTree(node.left);
+		TreeNode rightNode = returnHighestSizeOfAllZerosInSubTree(node.right);
 
-        if (maxH - minH < 2)
-            return true;
+		if (leftNode.valid && rightNode.valid && node.data == 0) {
 
-        return false;
-    }
+			if (firstTime) {
+				node.valid = true;
+				node.size = 3;
+				firstTime = false;
+			} else {
+				node.valid = true;
+				node.size = Math.max(leftNode.size, rightNode.size);
+			}
+		} else {
+			node.size = Math.max(leftNode.size, rightNode.size);
+		}
 
-    public TreeNode findLowestCommmonAncestor(TreeNode root, TreeNode node1, TreeNode node2) {
+		return node;
+	}
 
-    	//If the data is found in root node, return root node
-        if(root.data == node1.data || root.data == node2.data){
-            return root;
-        }
-        
-        // Check left subtree for node1 and node2
-        TreeNode leftTree = traversePreOrder(root.left, node1);
-        TreeNode rightTree = traversePreOrder(root.left, node2);
-        
-        if(leftTree != null && rightTree!=null){
-            findLowestCommmonAncestor(root.left, node1, node2);
-        }
-            
-        leftTree = traversePreOrder(root.right, node1);
-        rightTree = traversePreOrder(root.right, node2);
-        
-        if(leftTree != null && rightTree!=null){
-            findLowestCommmonAncestor(root.right, node1, node2);
-        }
-        
-        return root;
-    }
-    
-    public TreeNode traversePreOrder(TreeNode root, TreeNode node) {
+	// 0,1, 2, 3, 4, 5, 6
+	// create a minimal height tree from a sorted array 5,8,13,17,20,21,24
+	public TreeNode createBinarySearchTree(int[] array, int leftIndex,
+			int rightIndex) {
 
-        if(root == null)
-            return null;
-        
-        if (root.data == node.data) {
-            return root;
-        }
+		if (rightIndex < leftIndex)
+			return null;
 
-        traversePreOrder(root.left, node);
-        traversePreOrder(root.right, node);
+		int currentIndexValue = (leftIndex + rightIndex) / 2;
 
-        return null;
-    }
+		TreeNode tree = new TreeNode(array[currentIndexValue]);
+		tree.left = createBinarySearchTree(array, leftIndex,
+				currentIndexValue - 1);
+		tree.right = createBinarySearchTree(array, currentIndexValue + 1,
+				rightIndex);
 
-    public TreeNode findInOrderSuccessor(TreeNode root, TreeNode node) {
-    	
-    	if (node.right != null) {
-    		return findMinimumValue(node.right);
-    	}
-    	
-    	TreeNode parentNode = node.parent;
-    	while (parentNode != null && node == parentNode.right) {
-    		node = parentNode;
-    		parentNode = parentNode.parent;
-    	}
-    	
+		return tree;
+	}
+
+	public int calculateMaxHeight(TreeNode node) {
+
+		if (node == null)
+			return -1;
+
+		int lh = calculateMaxHeight(node.left);
+		int rh = calculateMaxHeight(node.right);
+
+		int height = 1 + Math.max(lh, rh);
+		return height;
+	}
+
+	public int calculateMinHeight(TreeNode node) {
+
+		if (node == null)
+			return -1;
+
+		int lh = calculateMaxHeight(node.left);
+		int rh = calculateMaxHeight(node.right);
+
+		int height = 1 + Math.min(lh, rh);
+		return height;
+	}
+
+	public boolean isBalanced(TreeNode node) {
+
+		int maxH = calculateMaxHeight(node);
+		int minH = calculateMinHeight(node);
+
+		if (maxH - minH < 2)
+			return true;
+
+		return false;
+	}
+
+	public TreeNode findLowestCommmonAncestor(TreeNode root, TreeNode node1,
+			TreeNode node2) {
+
+		// If the data is found in root node, return root node
+		if (root.data == node1.data || root.data == node2.data) {
+			return root;
+		}
+
+		// Check left subtree for node1 and node2
+		TreeNode leftTree = traversePreOrder(root.left, node1);
+		TreeNode rightTree = traversePreOrder(root.left, node2);
+
+		if (leftTree != null && rightTree != null) {
+			findLowestCommmonAncestor(root.left, node1, node2);
+		}
+
+		leftTree = traversePreOrder(root.right, node1);
+		rightTree = traversePreOrder(root.right, node2);
+
+		if (leftTree != null && rightTree != null) {
+			findLowestCommmonAncestor(root.right, node1, node2);
+		}
+
+		return root;
+	}
+
+	public TreeNode traversePreOrder(TreeNode root, TreeNode node) {
+
+		if (root == null)
+			return null;
+
+		if (root.data == node.data) {
+			return root;
+		}
+
+		traversePreOrder(root.left, node);
+		traversePreOrder(root.right, node);
+
+		return null;
+	}
+
+	public TreeNode findInOrderSuccessor(TreeNode root, TreeNode node) {
+
+		if (node.right != null) {
+			return findMinimumValue(node.right);
+		}
+
+		TreeNode parentNode = node.parent;
+		while (parentNode != null && node == parentNode.right) {
+			node = parentNode;
+			parentNode = parentNode.parent;
+		}
+
 		return parentNode;
-    }
+	}
 
 	private TreeNode findMinimumValue(TreeNode node) {
-		if(node.left != null) {
+		if (node.left != null) {
 			node = node.left;
 			findMinimumValue(node);
 		}
 		return node;
 	}
-    
-    
+
 }
